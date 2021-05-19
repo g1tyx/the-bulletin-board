@@ -12,13 +12,13 @@ function load(auto = true) {
     data.date = player.date;
     player.board = data.board;
     merge(player, data);
-    updateDisp();
-    updateBoard();
-    updateChance();
-    updateBarLabel();
-    updaetSettings();
     if (!auto) dropPost("loadBtn", false);
   }
+  updateDisp();
+  updateBoard();
+  updateChance();
+  updateBarLabel();
+  updaetSettings();
 }
 function exportSave() {
   let data = JSON.stringify(player);
