@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
+
+* {
+  font-family: "Itim", cursive;
+  user-select: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+body {
+  background: #eee;
+  overflow: hidden;
+}
+
+.screenContainer {
+  position: absolute;
+  height: 100%;
+  width: 200%;
+  transition: 0.5s;
+}
+
+.screen {
+  display: inline-block;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+
+.post {
+  display: inline-block;
+  text-align: center;
+  width: 95px;
+  height: 95px;
+  background: #ffb;
+  box-shadow: 2px 4px 2px black;
+  padding: 5px;
+  margin: 5px;
+  flex-wrap: wrap;
+}
+.post > span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+}
+
+.used {
+  animation: drop-out ease-in 0.5s forwards;
+}
+
+.post:hover {
+  filter: brightness(0.9);
+}
+.post:active {
+  filter: brightness(1.1);
+}
+
+.yellowText {
+  color: #ff0;
+  filter: drop-shadow(2px 2px black);
+}
+.blueText {
+  color: #00f;
+  filter: drop-shadow(2px 2px black);
+}
+.greenText {
+  color: #0f0;
+  filter: drop-shadow(2px 2px black);
+}
+.purpleText {
+  color: #f0f;
+  filter: drop-shadow(2px 2px black);
+}
+
+.post.yellow {
+  background: #ffb;
+}
+.post.blue {
+  background: #bbf;
+}
+.post.green {
+  background: #bfb;
+}
+.post.purple {
+  background: #fbf;
+}
+.post.red {
+  background: #fbb;
+}
+.post.gray {
+  background: #bbb;
+}
+
+.subtext {
+  color: #666;
+}
+
+.timerBar {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 50px;
+  height: 50%;
+  background: #888;
+  box-shadow: 2px 4px 2px black;
+}
+
+.timerInner {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+  background: #ffb;
+}
+
+.tips {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+}
+
+@keyframes drop-out {
+  from {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate(0, 50vh);
+  }
+}

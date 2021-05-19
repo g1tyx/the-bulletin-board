@@ -1,15 +1,104 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Post-It Storm</title>
-    <link rel="icon" type="image/png" href="pics/post-it-storm.png" />
+    <title>The Bulletin Board</title>
+    <link rel="icon" type="image/png" href="pics/the-bulletin-board.png" />
     <link rel="stylesheet" href="style.css" />
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <meta
       name="description"
-      content="'Post-It Storm', a incremental game created by TheTastyPi."
+      content="'The Bulletin Board', a incremental game created by TheTastyPi."
     />
     <meta name="author" content="TheTastyPi" />
   </head>
-  <body></body>
+  <body>
+    <div id="screenContainer" class="screenContainer">
+      <div id="mainScreen" class="screen">
+        <div id="topLeft" class="hidden" style="position: absolute;">
+          <div id="yDisp" class="post">
+            <span>
+              <span id="yAmt">0</span><br />
+              <span id="yRate" class="subtext">0/s</span>
+            </span>
+          </div>
+          <div id="bDisp" class="post blue hidden">
+            <span>
+              <span id="bAmt">0</span><br />
+              <span id="bRate" class="subtext">0/s</span>
+            </span>
+          </div>
+          <div id="gDisp" class="post green hidden">
+            <span>
+              <span id="gAmt">0</span><br />
+              <span id="gRate" class="subtext">0/s</span>
+            </span>
+          </div>
+          <div id="pDisp" class="post purple hidden">
+            <span>
+              <span id="pAmt">0</span><br />
+              <span id="pRate" class="subtext">0/s</span>
+            </span>
+          </div>
+        </div>
+        <div
+          id="topRight"
+          class="hidden"
+          style="position: absolute; right: 15px;"
+        >
+          <div class="post gray">
+            <span id="chanceDisp"></span>
+          </div>
+          <div id="settingBtn" class="post gray" onclick="toggleSettings()">
+            <span>Settings</span>
+          </div>
+        </div>
+        <div id="board" class="centered hidden"></div>
+        <div id="startBtnCont" class="centered" onclick="init()">
+          <div id="startBtn" class="post">
+            <span>Start!</span>
+          </div>
+        </div>
+        <div id="sideBar" class="timerBar hidden">
+          <div id="barFill" class="timerInner"></div>
+          <span id="barDisp" class="centered barDisp">0/5</span>
+        </div>
+        <div id="bottomLeft" class="tips subtext hidden">
+          You can shift-click to discard a post-it!
+        </div>
+      </div>
+      <div id="optionScreen" class="screen" style="left: 100vw;">
+        <div id="returnBtn" class="post gray" onclick="toggleSettings()">
+          <span>Go back</span>
+        </div>
+        <div id="options" class="centered">
+          <div id="saveBtn" class="post" onclick="save(false)">
+            <span>Save</span>
+          </div>
+          <div id="loadBtn" class="post" onclick="load(false)">
+            <span>Load</span>
+          </div>
+          <div id="exportBtn" class="post" onclick="exportSave()">
+            <span>Export</span>
+          </div>
+          <div id="importBtn" class="post" onclick="importSave()">
+            <span>Import</span>
+          </div>
+          <div id="autoSaveBtn" class="post" onclick="toggleAutoSave()">
+            <span>Auto Save<br><span id="autoSaveDisp">ON<span></span>
+          </div>
+          <div id="saveIntervalBtn" class="post" onclick="editSaveInterval()">
+            <span>Save Interval<br><span id="saveIntervalDisp">10.00s<span></span>
+          </div>
+          <div id="wipeSaveBtn" class="post red" onclick="wipeSaveConfirm()">
+            <span>WIPE SAVE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <textarea id="exportArea" class="hidden"></textarea>
+  </body>
+  <script src="js/base.js"></script>
+  <script src="js/upgData.js"></script>
+  <script src="js/update.js"></script>
+  <script src="js/saving.js"></script>
 </html>
