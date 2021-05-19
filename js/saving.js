@@ -6,17 +6,19 @@ function save(auto = true) {
 }
 function load(auto = true) {
   let data = JSON.parse(localStorage.getItem("tbbsave"));
-  let dt = player.date - data.date;
-  simulateTime(dt);
-  data.date = player.date;
-  player.board = data.board;
-  merge(player, data);
-  updateDisp();
-  updateBoard();
-  updateChance();
-  updateBarLabel();
-  updaetSettings();
-  if (!auto) dropPost("loadBtn", false);
+  if (data) {
+    let dt = player.date - data.date;
+    simulateTime(dt);
+    data.date = player.date;
+    player.board = data.board;
+    merge(player, data);
+    updateDisp();
+    updateBoard();
+    updateChance();
+    updateBarLabel();
+    updaetSettings();
+    if (!auto) dropPost("loadBtn", false);
+  }
 }
 function exportSave() {
   let data = JSON.stringify(player);
