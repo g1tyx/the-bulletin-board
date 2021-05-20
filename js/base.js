@@ -62,6 +62,12 @@ function chanceExch(fromType, toType, amount) {
   updateChance();
 }
 
+function addPostDelay(amount) {
+  player.postInterval += amount;
+  player.postInterval = Math.max(player.postInterval, 500);
+  player.postInterval = Math.min(player.postInterval, 1000 * 60);
+}
+
 function addPost() {
   let pos = Math.floor(Math.random() * player.boardSpace);
   while (player.board[pos] !== "empty") {
@@ -98,7 +104,11 @@ function usePost(pos) {
     if (player.notes[i] < cost[i]) break;
     if (i == 3) {
       for (let j in cost) player.notes[j] -= cost[j];
-      post.effect(...post.arg);
+      let arg = deepCopy(post.arg);
+      for (let i in arg) {
+        if (typeof arg[i] === "function") arg[i] = arg[i]();
+      }
+      post.effect(...arg);
       removePost(pos);
     }
   }
@@ -188,6 +198,19 @@ for (let i = 0; i < maxBoardSpace; i++) {
 document.querySelectorAll(".post").forEach(function (ele) {
   ele.style.transform = `rotate(${Math.random() * 10 - 5}deg)`;
 });
+
+function deepCopy(inObject) {
+  let outObject, value, key;
+  if (typeof inObject !== "object" || inObject === null) {
+    return inObject;
+  }
+  outObject = Array.isArray(inObject) ? [] : {};
+  for (key in inObject) {
+    value = inObject[key];
+    outObject[key] = deepCopy(value);
+  }
+  return outObject;
+}
 
 function format(n) {
   if (n < 1e3) {

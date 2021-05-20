@@ -39,7 +39,7 @@ new Upg(
   "+5 notes",
   getNotes,
   [0, 5],
-  () => player.notes[0] >= 20 && player.notes[0] <= 1000
+  () => player.notes[0] >= 20 && player.notes[0] <= 500
 );
 new Upg(
   0,
@@ -68,16 +68,60 @@ new Upg(
   [1, 5],
   () => player.notes[1] >= 20
 );
+new Upg(
+  0,
+  [1000, 100, 0, 0],
+  2,
+  "+1 green note",
+  getNotes,
+  [2, 1],
+  () => player.notes[1] >= 50
+);
+new Upg(
+  0,
+  [2500, 250, 0, 0],
+  1,
+  "+2 green notes",
+  getNotes,
+  [2, 2],
+  () => player.notes[2] >= 5
+);
+new Upg(
+  0,
+  [6500, 650, 0, 0],
+  0.5,
+  "+5 green notes",
+  getNotes,
+  [2, 5],
+  () => player.notes[2] >= 20
+);
 // blue
-new Upg(1, [5, 0, 0, 0], 10, "+0.1 notes/s", addRate, [0, 0.1], () => true);
 new Upg(
   1,
-  [10, 0, 0, 0],
+  [5, 0, 0, 0],
+  10,
+  "+0.1 notes/s",
+  addRate,
+  [0, 0.1],
+  () => player.rate[0] <= 1
+);
+new Upg(
+  1,
+  [15, 0, 0, 0],
   5,
   "+0.2 notes/s",
   addRate,
   [0, 0.2],
   () => player.rate[0] >= 0.5
+);
+new Upg(
+  1,
+  [50, 1, 0, 0],
+  4,
+  "+0.5 notes/s",
+  addRate,
+  [0, 0.5],
+  () => player.rate[0] >= 2
 );
 new Upg(
   1,
@@ -126,7 +170,7 @@ new Upg(
 // green
 new Upg(
   2,
-  [0, 10, 0, 0],
+  [0, 1, 0, 0],
   10,
   "Gain notes equal to current blue notes * 10",
   getNotes,
@@ -135,8 +179,8 @@ new Upg(
 );
 new Upg(
   2,
-  [100, 0, 0, 0],
-  1,
+  [1000, 20, 0, 0],
+  5,
   "+0.01 blue note/s",
   addRate,
   [1, 0.01],
@@ -144,8 +188,8 @@ new Upg(
 );
 new Upg(
   2,
-  [200, 0, 0, 0],
-  1,
+  [2000, 40, 0, 0],
+  3,
   "+0.02 blue note/s",
   addRate,
   [1, 0.02],
@@ -153,12 +197,30 @@ new Upg(
 );
 new Upg(
   2,
-  [500, 0, 0, 0],
-  1,
+  [5000, 200, 0, 0],
+  2,
   "+0.05 blue note/s",
   addRate,
   [1, 0.05],
   () => player.rate[1] >= 0.5
+);
+new Upg(
+  2,
+  [7500, 300],
+  1,
+  "Decrease post spawn delay by 100 miliseconds",
+  addPostDelay,
+  [-100],
+  () => player.postDelay > 500
+);
+new Upg(
+  2,
+  [7500, 300],
+  1,
+  "Increase post spawn delay by 100 miliseconds",
+  addPostDelay,
+  [100],
+  () => player.postDelay < 1000 * 60
 );
 // purple
 
