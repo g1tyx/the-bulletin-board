@@ -67,19 +67,19 @@ body {
 
 .yellowText {
   color: #ff0;
-  filter: drop-shadow(2px 2px black);
+  filter: drop-shadow(1px 1px black);
 }
 .blueText {
   color: #00f;
-  filter: drop-shadow(2px 2px black);
+  filter: drop-shadow(1px 1px black);
 }
 .greenText {
   color: #0f0;
-  filter: drop-shadow(2px 2px black);
+  filter: drop-shadow(1px 1px black);
 }
 .purpleText {
   color: #f0f;
-  filter: drop-shadow(2px 2px black);
+  filter: drop-shadow(1px 1px black);
 }
 
 .post.yellow {
@@ -98,7 +98,7 @@ body {
   background: #fbb;
 }
 .post.gray {
-  background: #bbb;
+  background: #ccc;
 }
 
 .subtext {

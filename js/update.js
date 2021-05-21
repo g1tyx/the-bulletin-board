@@ -2,10 +2,21 @@ function updateDisp() {
   let types = ["y", "b", "g", "p"];
   for (let i in types) {
     id(types[i] + "Amt").innerHTML = format(player.notes[i]);
-    id(types[i] + "Rate").innerHTML = format(player.rate[i]) + "/s";
+    id(types[i] + "Rate").innerHTML = format(getRate(i)) + "/s";
     if (player.notesTotal[i] > 0)
       id(types[i] + "Disp").classList.remove("hidden");
+    if (player.doubleTime > 0) {
+      id(types[i] + "Rate").classList.add("greenText");
+      id(types[i] + "Rate").classList.remove("subtext");
+    } else {
+      id(types[i] + "Rate").classList.remove("greenText");
+      id(types[i] + "Rate").classList.add("subtext");
+    }
   }
+  if (player.doubleTime > 0) {
+    id("doubleDisp").classList.remove("hidden");
+    id("doubleTimer").innerHTML = formatTime(player.doubleTime);
+  } else id("doubleDisp").classList.add("hidden");
 }
 
 function updateChance() {

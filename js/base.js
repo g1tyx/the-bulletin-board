@@ -37,25 +37,21 @@ function newGame() {
     noteChance: [0.8, 0.2, 0, 0],
     date: Date.now(),
     autoSave: true,
-    autoSaveInterval: 10000
+    autoSaveInterval: 10000,
+    doubleTime: 0
   };
 }
 function getNotes(type, amount) {
   player.notes[type] += amount;
   player.notesTotal[type] += amount;
-  updateDisp();
 }
 
 function addRate(type, amount) {
   player.rate[type] += amount;
-  updateDisp();
 }
 
 function chanceExch(fromType, toType, amount) {
-  amount = Math.min(
-    player.noteChance[fromType] - 0.01,
-    amount
-  );
+  amount = Math.min(player.noteChance[fromType] - 0.01, amount);
   if (amount < 0) amount = 0;
   player.noteChance[fromType] -= amount;
   player.noteChance[toType] += amount;
@@ -66,6 +62,15 @@ function addPostDelay(amount) {
   player.postInterval += amount;
   player.postInterval = Math.max(player.postInterval, 500);
   player.postInterval = Math.min(player.postInterval, 1000 * 60);
+}
+
+function expandBoard(amount, limit) {
+  if (player.boardSpace < limit) player.boardSpace += amount;
+  updateBarLabel();
+}
+
+function setDoubleTime(time) {
+  player.doubleTime = time;
 }
 
 function addPost() {
@@ -98,18 +103,20 @@ function addPost() {
 
 function usePost(pos) {
   let postId = player.board[pos];
-  let post = noteData[postId[0]][postId[1]];
-  let cost = post.cost;
-  for (let i in cost) {
-    if (player.notes[i] < cost[i]) break;
-    if (i == 3) {
-      for (let j in cost) player.notes[j] -= cost[j];
-      let arg = deepCopy(post.arg);
-      for (let i in arg) {
-        if (typeof arg[i] === "function") arg[i] = arg[i]();
+  if (postId !== "empty") {
+    let post = noteData[postId[0]][postId[1]];
+    let cost = post.cost;
+    for (let i in cost) {
+      if (player.notes[i] < cost[i] && cost[i] !== 0) break;
+      if (i == 3) {
+        for (let j in cost) player.notes[j] -= cost[j];
+        let arg = deepCopy(post.arg);
+        for (let i in arg) {
+          if (typeof arg[i] === "function") arg[i] = arg[i]();
+        }
+        post.effect(...arg);
+        removePost(pos);
       }
-      post.effect(...arg);
-      removePost(pos);
     }
   }
 }
@@ -143,9 +150,14 @@ function toggleSettings() {
   } else id("screenContainer").style.transform = "";
 }
 
+function getRate(type) {
+  return player.rate[type] * (player.doubleTime > 0 ? 2 : 1);
+}
+
 var prevts = 0;
 var nextPost = 0;
 var nextSave = 0;
+var noPost = false;
 function nextFrame(ts) {
   if (prevts === 0) prevts = ts;
   let dt = ts - prevts;
@@ -157,10 +169,10 @@ function nextFrame(ts) {
 function simulateTime(ms) {
   let t = ms / 1000;
   for (let i in player.notes) {
-    player.notes[i] += player.rate[i] * t;
-    player.notesTotal[i] += player.rate[i] * t;
+    player.notes[i] += getRate(i) * t;
+    player.notesTotal[i] += getRate(i) * t;
   }
-  nextPost += ms;
+  if (!noPost) nextPost += ms;
   if (nextPost > player.postInterval) {
     nextPost %= player.postInterval;
     if (getFilled() === player.boardSpace) {
@@ -174,6 +186,8 @@ function simulateTime(ms) {
       save();
     }
   }
+  if (player.doubleTime > 0) player.doubleTime -= ms;
+  if (player.doubleTime < 0) player.doubleTime = 0;
   updateDisp();
   updateBar();
 }
@@ -213,7 +227,9 @@ function deepCopy(inObject) {
 }
 
 function format(n) {
-  if (n < 1e3) {
+  if (n < 1) {
+    return n.toFixed(2);
+  } else if (n < 1e3) {
     return n.toFixed(1);
   } else {
     return n.toExponential(1).replace("+", "");

@@ -10,3 +10,10 @@
 ### 21 May 2021
 
 - Color chances can no longer go below 1%
+
+## 21 May 2021 #2
+
+- Numbers below 1 now have 2 significant digits
+- Made gray notes slightly lighter
+- Slightly changed the appearence of colored text
+- Added a bunch more upgrades (too lazy to count them)
