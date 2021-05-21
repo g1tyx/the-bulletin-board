@@ -53,10 +53,10 @@ function addRate(type, amount) {
 
 function chanceExch(fromType, toType, amount) {
   amount = Math.min(
-    player.noteChance[fromType],
-    1 - player.noteChance[toType],
+    player.noteChance[fromType] - 0.01,
     amount
   );
+  if (amount < 0) amount = 0;
   player.noteChance[fromType] -= amount;
   player.noteChance[toType] += amount;
   updateChance();

@@ -130,10 +130,7 @@ new Upg(
   "+5% blue chance, -5% yellow chance",
   chanceExch,
   [0, 1, 0.05],
-  () =>
-    player.notes[0] >= 20 &&
-    player.noteChance[0] > 0 &&
-    player.noteChance[1] < 1
+  () => player.notes[0] >= 20 && player.noteChance[0] > 0.01
 );
 new Upg(
   1,
@@ -142,10 +139,7 @@ new Upg(
   "+5% yellow chance, -5% blue chance",
   chanceExch,
   [1, 0, 0.05],
-  () =>
-    player.notes[0] >= 20 &&
-    player.noteChance[1] > 0 &&
-    player.noteChance[0] < 1
+  () => player.notes[0] >= 20 && player.noteChance[1] > 0.01
 );
 new Upg(
   1,
@@ -154,8 +148,7 @@ new Upg(
   "+5% green chance, -5% blue chance",
   chanceExch,
   [1, 2, 0.05],
-  () =>
-    player.notes[1] >= 5 && player.noteChance[1] > 0 && player.noteChance[2] < 1
+  () => player.notes[1] >= 5 && player.noteChance[1] > 0.01
 );
 new Upg(
   1,
@@ -164,8 +157,7 @@ new Upg(
   "+5% blue chance, -5% green chance",
   chanceExch,
   [2, 1, 0.05],
-  () =>
-    player.notes[1] >= 5 && player.noteChance[2] > 0 && player.noteChance[1] < 1
+  () => player.notes[1] >= 5 && player.noteChance[2] > 0.01
 );
 // green
 new Upg(
