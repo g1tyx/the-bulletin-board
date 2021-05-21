@@ -15,5 +15,5 @@
 
 - Numbers below 1 now have 2 significant digits
 - Made gray notes slightly lighter
-- Slightly changed the appearence of colored text
+- Slightly changed the appearance of colored text
 - Added a bunch more upgrades (too lazy to count them)
