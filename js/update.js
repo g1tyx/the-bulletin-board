@@ -49,7 +49,12 @@ function updateBoard() {
       continue;
     }
     let post = noteData[postId[0]][postId[1]];
-    let text = post.desc;
+    let text = post.desc
+      .replaceAll("<y>", "<span class='yellowText'>")
+      .replaceAll("<b>", "<span class='blueText'>")
+      .replaceAll("<g>", "<span class='greenText'>")
+      .replaceAll("<p>", "<span class='purpleText'>")
+      .replaceAll("</>", "</span>");
     if (post.cost.some((x) => x !== 0)) {
       text += "<br>Cost: ";
       if (post.cost[0] !== 0)

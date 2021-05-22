@@ -17,3 +17,7 @@
 - Made gray notes slightly lighter
 - Slightly changed the appearance of colored text
 - Added a bunch more upgrades (too lazy to count them)
+
+#### 22 May 2021
+
+- Upgrade descriptions now have colored text

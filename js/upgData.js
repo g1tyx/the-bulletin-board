@@ -18,7 +18,7 @@ new Upg(
   0,
   [0, 0, 0, 0],
   10,
-  "+1 note",
+  "+1 <y>note</>",
   getNotes,
   [0, 1],
   () => player.rate[0] < 2
@@ -27,7 +27,7 @@ new Upg(
   0,
   [0, 0, 0, 0],
   10,
-  "+2 notes",
+  "+2 <y>notes</>",
   getNotes,
   [0, 2],
   () => player.notes[0] >= 5 && player.rate[0] < 4
@@ -36,7 +36,7 @@ new Upg(
   0,
   [0, 0, 0, 0],
   5,
-  "+5 notes",
+  "+5 <y>notes</>",
   getNotes,
   [0, 5],
   () => player.notes[0] >= 20 && player.rate[0] < 10
@@ -45,7 +45,7 @@ new Upg(
   0,
   [100, 0, 0, 0],
   2,
-  "+1 blue note",
+  "+1 <b>blue note</>",
   getNotes,
   [1, 1],
   () => player.notes[0] >= 50 && player.rate[1] < 2
@@ -54,7 +54,7 @@ new Upg(
   0,
   [250, 0, 0, 0],
   1,
-  "+2 blue notes",
+  "+2 <b>blue notes</>",
   getNotes,
   [1, 2],
   () => player.notes[1] >= 5 && player.rate[1] < 4
@@ -63,7 +63,7 @@ new Upg(
   0,
   [650, 0, 0, 0],
   0.5,
-  "+5 blue notes",
+  "+5 <b>blue notes</>",
   getNotes,
   [1, 5],
   () => player.notes[1] >= 20 && player.rate[1] < 10
@@ -72,7 +72,7 @@ new Upg(
   0,
   [1000, 100, 0, 0],
   2,
-  "+1 green note",
+  "+1 <g>green note</>",
   getNotes,
   [2, 1],
   () => player.notes[1] >= 50 && player.rate[2] < 2
@@ -81,7 +81,7 @@ new Upg(
   0,
   [2500, 250, 0, 0],
   1,
-  "+2 green notes",
+  "+2 <g>green notes</>",
   getNotes,
   [2, 2],
   () => player.notes[2] >= 5 && player.rate[2] < 4
@@ -90,7 +90,7 @@ new Upg(
   0,
   [6500, 650, 0, 0],
   0.5,
-  "+5 green notes",
+  "+5 <g>green notes</>",
   getNotes,
   [2, 5],
   () => player.notes[2] >= 20 && player.rate[2] < 10
@@ -99,7 +99,7 @@ new Upg(
   0,
   [0, 0, 0, 0],
   50,
-  "Reset notes & note/s at the cost of all blue note/s",
+  "Reset <y>notes</> & <y>note/s</> at the cost of all <b>blue note/s</>",
   () => {
     player.notes[0] = 0;
     player.rate[0] = 0;
@@ -112,7 +112,7 @@ new Upg(
   0,
   [0, 0, 0, 0],
   0.01,
-  "Gain notes equal to 1 minute of production",
+  "Gain <y>notes</> equal to 1 minute of production",
   getNotes,
   [0, () => player.rate[0] * 60],
   () => player.rate[0] > 0
@@ -121,7 +121,7 @@ new Upg(
   0,
   [0, 0, 0, 0],
   0.01,
-  "Gain blue notes equal to 1 minute of production",
+  "Gain <b>blue notes</> equal to 1 minute of production",
   getNotes,
   [1, () => player.rate[1] * 60],
   () => player.rate[1] > 0
@@ -141,7 +141,7 @@ new Upg(
   1,
   [5, 0, 0, 0],
   10,
-  "+0.1 notes/s",
+  "+0.1 <y>notes/s</>",
   addRate,
   [0, 0.1],
   () => player.rate[0] < 1
@@ -150,7 +150,7 @@ new Upg(
   1,
   [15, 0, 0, 0],
   5,
-  "+0.2 notes/s",
+  "+0.2 <y>notes/s</>",
   addRate,
   [0, 0.2],
   () => player.rate[0] >= 0.5 && player.rate[0] < 2
@@ -159,7 +159,7 @@ new Upg(
   1,
   [50, 1, 0, 0],
   4,
-  "+0.5 notes/s",
+  "+0.5 <y>notes/s</>",
   addRate,
   [0, 0.5],
   () => player.rate[0] >= 2
@@ -168,7 +168,7 @@ new Upg(
   1,
   [20, 0, 0, 0],
   3,
-  "+5% blue chance, -5% yellow chance",
+  "+5% <b>blue chance</>, -5% <y>yellow chance</>",
   chanceExch,
   [0, 1, 0.05],
   () => player.notes[0] >= 20 && player.noteChance[0] > 0.01
@@ -177,7 +177,7 @@ new Upg(
   1,
   [20, 0, 0, 0],
   3,
-  "+5% yellow chance, -5% blue chance",
+  "+5% <y>yellow chance</>, -5% <b>blue chance</>",
   chanceExch,
   [1, 0, 0.05],
   () => player.notes[0] >= 20 && player.noteChance[1] > 0.01
@@ -186,7 +186,7 @@ new Upg(
   1,
   [50, 5, 0, 0],
   1,
-  "+5% green chance, -5% blue chance",
+  "+5% <g>green chance</>, -5% <b>blue chance</>",
   chanceExch,
   [1, 2, 0.05],
   () => player.notes[1] >= 5 && player.noteChance[1] > 0.01
@@ -195,7 +195,7 @@ new Upg(
   1,
   [50, 5, 0, 0],
   1,
-  "+5% blue chance, -5% green chance",
+  "+5% <b>blue chance</>, -5% <g>green chance</>",
   chanceExch,
   [2, 1, 0.05],
   () => player.notes[1] >= 5 && player.noteChance[2] > 0.01
@@ -204,7 +204,7 @@ new Upg(
   1,
   [200, 5, 0, 0],
   2,
-  "+1 notes/s",
+  "<y>+1 notes/s</>",
   addRate,
   [0, 1],
   () => player.rate[0] >= 5
@@ -213,7 +213,7 @@ new Upg(
   1,
   [1000, 25, 1, 0],
   2,
-  "+5 notes/s",
+  "<y>+5 notes/s</>",
   addRate,
   [0, 5],
   () => player.rate[0] >= 25
@@ -232,7 +232,7 @@ new Upg(
   2,
   [0, 1, 0, 0],
   10,
-  "Gain notes equal to current blue notes * 10",
+  "Gain <y>notes</> equal to current <b>blue notes</> * 10",
   getNotes,
   [0, () => player.notes[1] * 10],
   () => true
@@ -241,7 +241,7 @@ new Upg(
   2,
   [500, 10, 0, 0],
   5,
-  "+0.01 blue note/s",
+  "+0.01 <b>blue note/s</>",
   addRate,
   [1, 0.01],
   () => player.notes[1] >= 10 && player.rate[1] < 0.1
@@ -250,7 +250,7 @@ new Upg(
   2,
   [1000, 20, 0, 0],
   5,
-  "+0.02 blue note/s",
+  "+0.02 <b>blue note/s</>",
   addRate,
   [1, 0.02],
   () => player.rate[1] >= 0.05 && player.rate[1] < 0.2
@@ -259,7 +259,7 @@ new Upg(
   2,
   [2500, 100, 1, 0],
   5,
-  "+0.05 blue note/s",
+  "+0.05 <b>blue note/s</>",
   addRate,
   [1, 0.05],
   () => player.rate[1] >= 0.2 && player.rate[1] < 0.5
@@ -304,7 +304,7 @@ new Upg(
   2,
   [2000, 200, 1, 0],
   2.5,
-  "+0.1 blue note/s but -2 note/s",
+  "+0.1 <b>blue note/s</> but -2 <y>note/s</>",
   () => {
     addRate(1, 0.1);
     addRate(0, -2);
@@ -316,7 +316,7 @@ new Upg(
   2,
   [4000, 400, 2, 0],
   2.5,
-  "+0.2 blue note/s but -5 note/s",
+  "+0.2 <b>blue note/s</> but -5 <y>note/s</>",
   () => {
     addRate(1, 0.2);
     addRate(0, -5);
@@ -328,7 +328,7 @@ new Upg(
   2,
   [10000, 1000, 4, 0],
   2.5,
-  "+0.5 blue note/s but -15 note/s",
+  "+0.5 <b>blue note/s</> but -15 <y>note/s</>",
   () => {
     addRate(1, 0.5);
     addRate(0, -15);
