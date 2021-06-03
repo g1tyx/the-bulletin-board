@@ -1,6 +1,7 @@
 function updateDisp() {
   let types = ["y", "b", "g", "p"];
   for (let i in types) {
+    i = parseInt(i);
     id(types[i] + "Amt").innerHTML = format(player.notes[i]);
     id(types[i] + "Rate").innerHTML = format(getRate(i)) + "/s";
     if (player.notesTotal[i] > 0)
@@ -12,6 +13,32 @@ function updateDisp() {
       id(types[i] + "Rate").classList.remove("greenText");
       id(types[i] + "Rate").classList.add("subtext");
     }
+
+    if (player.notes[i] >= 1 && [1, 2].includes(i)) giveAch(types[i] + "Note1");
+    if (player.notes[i] >= 10 && [0, 1, 2].includes(i))
+      giveAch(types[i] + "Note10");
+    if (player.notes[i] >= 100 && [0, 1, 2].includes(i))
+      giveAch(types[i] + "Note100");
+    if (player.notes[i] >= 1000 && [0, 1, 2].includes(i))
+      giveAch(types[i] + "Note1000");
+    if (player.notes[i] >= 1e4 && [0, 1].includes(i))
+      giveAch(types[i] + "Note1e4");
+    if (player.notes[i] >= 1e5 && [0].includes(i))
+      giveAch(types[i] + "Note1e5");
+
+    if (player.rate[i] >= 0.01 && [1].includes(i))
+      giveAch(types[i] + "Rate0.01");
+    if (player.rate[i] >= 0.1 && [0, 1].includes(i))
+      giveAch(types[i] + "Rate0.1");
+    if (player.rate[i] >= 1 && [0, 1].includes(i)) giveAch(types[i] + "Rate1");
+    if (player.rate[i] >= 10 && [0, 1].includes(i))
+      giveAch(types[i] + "Rate10");
+    if (player.rate[i] >= 100 && [0, 1].includes(i))
+      giveAch(types[i] + "Rate100");
+    if (player.rate[i] >= 1000 && [0].includes(i))
+      giveAch(types[i] + "Rate1000");
+
+    if (player.notes[i] < 0) giveAch("negative");
   }
   if (player.doubleTime > 0) {
     id("doubleDisp").classList.remove("hidden");
@@ -89,7 +116,52 @@ function updateBarLabel() {
   } else id("barDisp").style.color = "";
 }
 
-function updaetSettings() {
+function updateSettings() {
   id("autoSaveDisp").innerHTML = player.autoSave ? "ON" : "OFF";
   id("saveIntervalDisp").innerHTML = formatTime(player.autoSaveInterval);
+}
+
+function updateStats() {
+  id("timePlayed").innerHTML = formatTime(player.timePlayed);
+  id("postsUsed").innerHTML = player.postsUsed;
+  id("postsDiscarded").innerHTML = player.postsDiscarded;
+  let types = ["Y", "B", "G", "P"];
+  for (let i in types) {
+    id("totalNotes" + types[i]).innerHTML = format(player.notesTotal[i]);
+    if (player.notesTotal[i] > 0)
+      id("totalNotes" + types[i] + "Container").classList.remove("hidden");
+  }
+}
+
+function updateAch() {
+  for (let i in player.achievements) {
+    let achId = player.achievements[i];
+    let ach = achList[achId];
+    id(achId + "Ach").classList.remove("gray");
+    id(
+      achId + "Ach"
+    ).innerHTML = `<span>${ach.name}<br><span class="subtext">${ach.desc}</span></span>`;
+  }
+}
+
+var notifyQueue = [];
+function notify(title, text) {
+  notifyQueue.push([title, text]);
+  updateNotification();
+}
+
+function updateNotification() {
+  let data = notifyQueue[0];
+  if (data) {
+    let text = `<span>${data[0]}<br><span class="subtext">${data[1]}</span></span>`;
+    id("notifications").innerHTML = text ?? "";
+  }
+  id("notifications").classList[notifyQueue.length === 0 ? "add" : "remove"](
+    "hidden"
+  );
+}
+
+function removeNotification() {
+  notifyQueue.shift();
+  updateNotification();
 }

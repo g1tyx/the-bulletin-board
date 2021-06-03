@@ -21,3 +21,9 @@
 #### 22 May 2021
 
 - Upgrade descriptions now have colored text
+
+## 3 Jun. 2021
+
+- Added statistics
+- Added achievements, 40 of them
+  - No actual use, just there to look cool

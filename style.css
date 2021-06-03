@@ -31,8 +31,8 @@ body {
 .screen {
   display: inline-block;
   position: absolute;
-  width: 100vw;
-  height: 100vh;
+  width: calc(100vw - 16px);
+  height: calc(100vh - 16px);
 }
 
 .post {
@@ -44,7 +44,6 @@ body {
   box-shadow: 2px 4px 2px black;
   padding: 5px;
   margin: 5px;
-  flex-wrap: wrap;
 }
 .post > span {
   position: absolute;
@@ -98,7 +97,7 @@ body {
   background: #fbb;
 }
 .post.gray {
-  background: #ccc;
+  background-color: #ccc;
 }
 
 .subtext {
@@ -125,8 +124,21 @@ body {
 
 .tips {
   position: absolute;
-  bottom: 16px;
-  left: 0;
+  bottom: 0;
+}
+
+.achDisp {
+  width: 80%;
+  overflow-y: auto;
+  max-height: 100%;
+  text-align: center;
+}
+
+.notification {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0) !important;
 }
 
 @keyframes drop-out {

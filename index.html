@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>The Bulletin Board</title>
-    <link rel="icon" type="image/png" href="pics/the-bulletin-board.png" />
+    <link rel="icon" type="image/png" href="pics/TBBicon.png" />
     <link rel="stylesheet" href="style.css" />
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <meta
@@ -13,6 +13,66 @@
   </head>
   <body>
     <div id="screenContainer" class="screenContainer">
+      <div id="achievementScreen" class="screen" style="left: -100vw;top:-100vh">
+        <div id="returnBtn3" class="post gray" style="position: absolute; right: 15px; bottom: 15px;" onclick="toggleAchievements()">
+          <span>Go back</span>
+        </div>
+        <div id="achievementDisp" class="centered achDisp"></div>
+      </div>
+      <div id="statsScreen" class="screen" style="left: -100vw;">
+        <div style="position: absolute; right: 15px;">
+          <div id="achBtn" class="post gray" onclick="toggleAchievements()">
+            <span>Achievements</span>
+          </div>
+          <div id="returnBtn2" class="post gray" onclick="toggleStats()">
+            <span>Go back</span>
+          </div>
+        </div>
+        <div id="stats" class="centered">
+          <div class="post">
+            <span>
+              Time Played<br>
+              <span id="timePlayed">0s</span>
+            </span>
+          </div>
+          <div class="post">
+            <span>
+              Posts Used<br>
+              <span id="postsUsed">0</span>
+            </span>
+          </div>
+          <div class="post">
+            <span>
+              Posts Discarded<br>
+              <span id="postsDiscarded">0</span>
+            </span>
+          </div>
+          <div id="totalNotesYContainer" class="post">
+            <span>
+              Total Notes<br>
+              <span id="totalNotesY">0</span>
+            </span>
+          </div>
+          <div id="totalNotesBContainer" class="post blue hidden">
+            <span>
+              Total Blue Notes<br>
+              <span id="totalNotesB">0</span>
+            </span>
+          </div>
+          <div id="totalNotesGContainer" class="post green hidden">
+            <span>
+              Total Green Notes<br>
+              <span id="totalNotesG">0</span>
+            </span>
+          </div>
+          <div id="totalNotesPContainer" class="post purple hidden">
+            <span>
+              Total Purple Notes<br>
+              <span id="totalNotesP">0</span>
+            </span>
+          </div>
+        </div>
+      </div>
       <div id="mainScreen" class="screen">
         <div id="topLeft" class="hidden" style="position: absolute;">
           <div id="yDisp" class="post">
@@ -52,6 +112,9 @@
         >
           <div class="post gray">
             <span id="chanceDisp"></span>
+          </div>
+          <div id="statsBtn" class="post gray" onclick="toggleStats()">
+            <span>Statistics</span>
           </div>
           <div id="settingBtn" class="post gray" onclick="toggleSettings()">
             <span>Settings</span>
@@ -100,10 +163,12 @@
         </div>
       </div>
     </div>
+    <div id="notifications" class="post notification hidden" onclick="removeNotification()"></div>
     <textarea id="exportArea" class="hidden"></textarea>
   </body>
   <script src="js/base.js"></script>
   <script src="js/upgData.js"></script>
   <script src="js/update.js"></script>
   <script src="js/saving.js"></script>
+  <script src="js/achievements.js"></script>
 </html>

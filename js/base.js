@@ -2,6 +2,7 @@ var player = newGame();
 const maxBoardSpace = 25;
 function newGame() {
   return {
+    timePlayed: 0,
     board: [
       "empty",
       "empty",
@@ -31,6 +32,8 @@ function newGame() {
     ],
     notes: [0, 0, 0, 0],
     notesTotal: [0, 0, 0, 0],
+    postsUsed: 0,
+    postsDiscarded: 0,
     rate: [0, 0, 0, 0],
     postInterval: 1000 * 5,
     boardSpace: 5,
@@ -38,7 +41,8 @@ function newGame() {
     date: Date.now(),
     autoSave: true,
     autoSaveInterval: 10000,
-    doubleTime: 0
+    doubleTime: 0,
+    achievements: []
   };
 }
 function getNotes(type, amount) {
@@ -51,6 +55,7 @@ function addRate(type, amount) {
 }
 
 function chanceExch(fromType, toType, amount) {
+  if (amount > player.noteChance[fromType] - 0.01) giveAch("1%");
   amount = Math.min(player.noteChance[fromType] - 0.01, amount);
   if (amount < 0) amount = 0;
   player.noteChance[fromType] -= amount;
@@ -66,6 +71,8 @@ function addPostDelay(amount) {
 
 function expandBoard(amount, limit) {
   if (player.boardSpace < limit) player.boardSpace += amount;
+  if (player.boardSpace >= 6) giveAch("board6");
+  if (player.boardSpace >= 10) giveAch("board10");
   updateBarLabel();
 }
 
@@ -115,6 +122,11 @@ function usePost(pos) {
           if (typeof arg[i] === "function") arg[i] = arg[i]();
         }
         post.effect(...arg);
+        player.postsUsed++;
+        if (player.postsUsed >= 10) giveAch("use10");
+        if (player.postsUsed >= 100) giveAch("use100");
+        if (player.postsUsed >= 1000) giveAch("use100");
+        if (player.postsUsed >= 1e4) giveAch("use1e4");
         removePost(pos);
       }
     }
@@ -144,14 +156,27 @@ function getFilled() {
   return player.board.filter((x) => x !== "empty").length;
 }
 
+function getRate(type) {
+  return player.rate[type] * (player.doubleTime > 0 ? 2 : 1);
+}
+
 function toggleSettings() {
   if (id("screenContainer").style.transform === "") {
     id("screenContainer").style.transform = "translate(-100vw,0)";
+    giveAch("openSettings");
   } else id("screenContainer").style.transform = "";
 }
-
-function getRate(type) {
-  return player.rate[type] * (player.doubleTime > 0 ? 2 : 1);
+function toggleStats() {
+  if (id("screenContainer").style.transform === "") {
+    id("screenContainer").style.transform = "translate(100vw,0)";
+    giveAch("openStats");
+  } else id("screenContainer").style.transform = "";
+}
+function toggleAchievements() {
+  if (id("screenContainer").style.transform === "translate(100vw, 0px)") {
+    id("screenContainer").style.transform = "translate(100vw,100vh)";
+    giveAch("openAch");
+  } else id("screenContainer").style.transform = "translate(100vw,0)";
 }
 
 var prevts = 0;
@@ -162,6 +187,9 @@ function nextFrame(ts) {
   if (prevts === 0) prevts = ts;
   let dt = ts - prevts;
   prevts = ts;
+  player.timePlayed += dt;
+  if (id("screenContainer").style.transform === "translate(100vw, 0px)")
+    updateStats();
   simulateTime(dt);
   requestAnimationFrame(nextFrame);
 }
@@ -201,6 +229,11 @@ for (let i = 0; i < maxBoardSpace; i++) {
   ele.addEventListener("click", function (event) {
     if (event.shiftKey) {
       removePost(i);
+      player.postsDiscarded++;
+      if (player.postsDiscarded >= 10) giveAch("discard10");
+      if (player.postsDiscarded >= 100) giveAch("discard100");
+      if (player.postsDiscarded >= 1000) giveAch("discard100");
+      if (player.postsDiscarded >= 1e4) giveAch("discard1e4");
     } else usePost(i);
   });
   let text = document.createElement("span");
@@ -270,5 +303,6 @@ function init() {
   id("sideBar").classList.remove("hidden");
   getNotes(0, 1);
   load();
+  giveAch("start");
   requestAnimationFrame(nextFrame);
 }

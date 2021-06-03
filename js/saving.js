@@ -10,7 +10,8 @@ function load(auto = true) {
     let dt = player.date - data.date;
     simulateTime(dt);
     data.date = player.date;
-    player.board = data.board;
+    player.board = [...data.board];
+    player.achievements = [...data.achievements];
     merge(player, data);
     if (!auto) dropPost("loadBtn", false);
   }
@@ -18,7 +19,9 @@ function load(auto = true) {
   updateBoard();
   updateChance();
   updateBarLabel();
-  updaetSettings();
+  updateSettings();
+  updateStats();
+  updateAch();
 }
 function exportSave() {
   let data = JSON.stringify(player);
@@ -48,7 +51,7 @@ function toggleAutoSave() {
   player.autoSave = !player.autoSave;
   dropPost("autoSaveBtn", false);
   setTimeout(() => {
-    updaetSettings();
+    updateSettings();
   }, 500);
 }
 function editSaveInterval() {
@@ -59,7 +62,7 @@ function editSaveInterval() {
     if (newInterval >= 500 && newInterval <= 86400000) {
       player.autoSaveInterval = newInterval;
       setTimeout(() => {
-        updaetSettings();
+        updateSettings();
       }, 500);
       dropPost("saveIntervalBtn", false);
     } else alert("Out of range!");
