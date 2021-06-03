@@ -11,7 +11,7 @@ function load(auto = true) {
     simulateTime(dt);
     data.date = player.date;
     player.board = [...data.board];
-    player.achievements = [...data.achievements];
+    if (data.achievements) player.achievements = [...data.achievements];
     merge(player, data);
     if (!auto) dropPost("loadBtn", false);
   }
