@@ -40,3 +40,7 @@
 ### 9 Sep. 2021 #3
 
 - Added a new green upgrade
+
+### 9 Sep. 2021 #4
+
+- Fixed a bug where offline progress will also spawn posts
