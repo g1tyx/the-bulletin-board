@@ -43,16 +43,16 @@ new Upg(
 );
 new Upg(
   0,
-  [100, 0, 0, 0],
+  [50, 0, 0, 0],
   2,
   "+1 <b>blue note</>",
   getNotes,
   [1, 1],
-  () => player.notes[0] >= 50 && player.rate[1] < 2
+  () => player.notes[0] >= 25 && player.rate[1] < 2
 );
 new Upg(
   0,
-  [250, 0, 0, 0],
+  [150, 0, 0, 0],
   1,
   "+2 <b>blue notes</>",
   getNotes,
@@ -61,7 +61,7 @@ new Upg(
 );
 new Upg(
   0,
-  [650, 0, 0, 0],
+  [350, 0, 0, 0],
   0.5,
   "+5 <b>blue notes</>",
   getNotes,
@@ -70,16 +70,16 @@ new Upg(
 );
 new Upg(
   0,
-  [1000, 100, 0, 0],
+  [1000, 50, 0, 0],
   2,
   "+1 <g>green note</>",
   getNotes,
   [2, 1],
-  () => player.notes[1] >= 50 && player.rate[2] < 2
+  () => player.notes[1] >= 25 && player.rate[2] < 2
 );
 new Upg(
   0,
-  [2500, 250, 0, 0],
+  [2500, 150, 0, 0],
   1,
   "+2 <g>green notes</>",
   getNotes,
@@ -88,7 +88,7 @@ new Upg(
 );
 new Upg(
   0,
-  [6500, 650, 0, 0],
+  [6500, 350, 0, 0],
   0.5,
   "+5 <g>green notes</>",
   getNotes,
@@ -111,19 +111,19 @@ new Upg(
 new Upg(
   0,
   [0, 0, 0, 0],
-  0.01,
-  "Gain <y>notes</> equal to 1 minute of production",
+  0.05,
+  "Gain <y>notes</> equal to 30 minute of production",
   getNotes,
-  [0, () => player.rate[0] * 60],
+  [0, () => player.rate[0] * 60 * 30],
   () => player.rate[0] > 0
 );
 new Upg(
   0,
   [0, 0, 0, 0],
-  0.01,
-  "Gain <b>blue notes</> equal to 1 minute of production",
+  0.05,
+  "Gain <b>blue notes</> equal to 30 minute of production",
   getNotes,
-  [1, () => player.rate[1] * 60],
+  [1, () => player.rate[1] * 60 * 30],
   () => player.rate[1] > 0
 );
 new Upg(
@@ -204,7 +204,7 @@ new Upg(
   1,
   [200, 5, 0, 0],
   2,
-  "<y>+1 notes/s</>",
+  "+1 <y>notes/s</>",
   addRate,
   [0, 1],
   () => player.rate[0] >= 5
@@ -213,7 +213,7 @@ new Upg(
   1,
   [1000, 25, 1, 0],
   2,
-  "<y>+5 notes/s</>",
+  "+5 <y>notes/s</>",
   addRate,
   [0, 5],
   () => player.rate[0] >= 25
@@ -239,7 +239,7 @@ new Upg(
 );
 new Upg(
   2,
-  [500, 10, 0, 0],
+  [250, 5, 0, 0],
   5,
   "+0.01 <b>blue note/s</>",
   addRate,
@@ -248,7 +248,7 @@ new Upg(
 );
 new Upg(
   2,
-  [1000, 20, 0, 0],
+  [500, 15, 0, 0],
   5,
   "+0.02 <b>blue note/s</>",
   addRate,
@@ -257,7 +257,7 @@ new Upg(
 );
 new Upg(
   2,
-  [2500, 100, 1, 0],
+  [1500, 35, 1, 0],
   5,
   "+0.05 <b>blue note/s</>",
   addRate,
@@ -266,7 +266,7 @@ new Upg(
 );
 new Upg(
   2,
-  [5000, 300, 1, 0],
+  [3000, 100, 1, 0],
   2,
   "Decrease post spawn interval by 100 ms",
   addPostDelay,
@@ -275,7 +275,7 @@ new Upg(
 );
 new Upg(
   2,
-  [5000, 300, 1, 0],
+  [3000, 100, 1, 0],
   2,
   "Increase post spawn interval by 100 ms",
   addPostDelay,
@@ -284,7 +284,7 @@ new Upg(
 );
 new Upg(
   2,
-  [1e4, 500, 3, 0],
+  [1e4, 250, 3, 0],
   1,
   "+1 board space (up to 10)",
   expandBoard,
@@ -302,7 +302,7 @@ new Upg(
 );
 new Upg(
   2,
-  [2000, 200, 1, 0],
+  [2000, 90, 1, 0],
   2.5,
   "+0.1 <b>blue note/s</> but -2 <y>note/s</>",
   () => {
@@ -314,7 +314,7 @@ new Upg(
 );
 new Upg(
   2,
-  [4000, 400, 2, 0],
+  [4000, 200, 2, 0],
   2.5,
   "+0.2 <b>blue note/s</> but -5 <y>note/s</>",
   () => {
@@ -326,7 +326,7 @@ new Upg(
 );
 new Upg(
   2,
-  [10000, 1000, 4, 0],
+  [10000, 500, 4, 0],
   2.5,
   "+0.5 <b>blue note/s</> but -15 <y>note/s</>",
   () => {

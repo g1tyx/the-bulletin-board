@@ -28,3 +28,7 @@
 - Added achievements, 40 of them
   - No actual use, just there to look cool
 - Added a tab icon
+
+### 9 Sep. 2021
+
+- Changed around some of the prices
