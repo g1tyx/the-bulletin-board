@@ -32,3 +32,7 @@
 ### 9 Sep. 2021
 
 - Changed around some of the prices
+
+### 9 Sep. 2021 #2
+
+- Fixed a bug where post interval upgrades won't appear

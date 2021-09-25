@@ -271,7 +271,7 @@ new Upg(
   "Decrease post spawn interval by 100 ms",
   addPostDelay,
   [-100],
-  () => player.postDelay > 500
+  () => player.postInterval > 500
 );
 new Upg(
   2,
@@ -280,7 +280,7 @@ new Upg(
   "Increase post spawn interval by 100 ms",
   addPostDelay,
   [100],
-  () => player.postDelay < 1000 * 60
+  () => player.postInterval < 1000 * 60
 );
 new Upg(
   2,
