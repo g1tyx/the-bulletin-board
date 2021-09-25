@@ -8,7 +8,9 @@ function load(auto = true) {
   let data = JSON.parse(localStorage.getItem("tbbsave"));
   if (data) {
     let dt = player.date - data.date;
+    noPost = true;
     simulateTime(dt);
+    noPost = false;
     data.date = player.date;
     player.board = [...data.board];
     if (data.achievements) player.achievements = [...data.achievements];
