@@ -36,3 +36,7 @@
 ### 9 Sep. 2021 #2
 
 - Fixed a bug where post interval upgrades won't appear
+
+### 9 Sep. 2021 #3
+
+- Added a new green upgrade

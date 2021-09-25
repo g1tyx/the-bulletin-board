@@ -239,6 +239,18 @@ new Upg(
 );
 new Upg(
   2,
+  [0, 0, 1, 0],
+  2,
+  "Convert ALL <y>notes</> to <b>blue notes</> at a <y>200</>:<b>1</> ratio.",
+  () => {
+    getNotes(1, player.notes[0] / 200);
+    getNotes(0, -player.notes[0]);
+  },
+  [],
+  () => player.notes[0] >= 1e4
+);
+new Upg(
+  2,
   [250, 5, 0, 0],
   5,
   "+0.01 <b>blue note/s</>",
