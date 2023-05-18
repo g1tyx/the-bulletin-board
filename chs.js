@@ -82,7 +82,7 @@ var cnItems = {
     "+1 board space (up to 10)": "+1 板子空间（最多 10 个）",
     "at a": "在",
     "blue note/s": "蓝色便利贴",
-    "blue notes": "蓝调",
+    "blue notes": "蓝色便利贴",
     "but -2": "但是-2",
     "Catching Up": "迎头赶上",
     "Convert ALL": "全部转换",
