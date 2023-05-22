@@ -89,7 +89,7 @@ var cnItems = {
     "Decrease post spawn interval by 100 ms": "将生成后间隔减少 100 毫秒",
     "Discard a total of 10 posts.": "丢弃总共 10 个便利贴。",
     "Discard a total of 100 posts.": "丢弃总共 100 个便利贴。",
-    "Does nothing": "什么也没做",
+    "Does nothing": "什么都不做",
     "Double all production for 1 minute": "将所有产量加倍 1 分钟",
     "equal to 30 minute of production": "相当于30分钟的制作",
     "equal to current": "等于当前",
